@@ -1,0 +1,6 @@
+framework module Pods_MKRemoteMetering_Example {
+  umbrella header "Pods-MKRemoteMetering_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module MKRemoteMetering {
+  umbrella header "MKRemoteMetering-umbrella.h"
+
+  export *
+  module * { export * }
+}
