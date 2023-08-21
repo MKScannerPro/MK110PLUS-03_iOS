@@ -141,6 +141,12 @@ UITableViewDataSource>
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
+    if (indexPath.section == 0 && indexPath.row == 7) {
+        //Data report timout
+        MKRMDataReportController *vc = [[MKRMDataReportController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
     if (indexPath.section == 2 && indexPath.row == 0) {
         //OTA
         MKRMOTAController *vc = [[MKRMOTAController alloc] init];
@@ -429,6 +435,10 @@ UITableViewDataSource>
     MKSettingTextCellModel *cellModel7 = [[MKSettingTextCellModel alloc] init];
     cellModel7.leftMsg = @"Reset device by button";
     [self.section0List addObject:cellModel7];
+    
+//    MKSettingTextCellModel *cellModel8 = [[MKSettingTextCellModel alloc] init];
+//    cellModel8.leftMsg = @"Data report timout";
+//    [self.section0List addObject:cellModel8];
 }
 
 - (void)loadSection1Datas {

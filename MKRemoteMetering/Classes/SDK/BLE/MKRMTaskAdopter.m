@@ -436,6 +436,9 @@ NSString *const mk_rm_contentKey = @"mk_rm_contentKey";
     }else if ([cmd isEqualToString:@"12"]) {
         //配置时区
         operationID = mk_rm_taskConfigTimeZoneOperation;
+    }else if ([cmd isEqualToString:@"14"]) {
+        //配置UTC时间戳
+        operationID = mk_rm_taskConfigDeviceTimeOperation;
     }else if ([cmd isEqualToString:@"20"]) {
         //配置MQTT服务器域名
         operationID = mk_rm_taskConfigServerHostOperation;

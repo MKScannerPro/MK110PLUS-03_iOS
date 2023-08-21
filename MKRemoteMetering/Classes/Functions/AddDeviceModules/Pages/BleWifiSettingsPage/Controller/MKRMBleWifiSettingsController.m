@@ -745,12 +745,12 @@ MKRMBleWifiSettingsBandCellDelegate>
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kViewWidth, 60.f)];
     footerView.backgroundColor = RGBCOLOR(242, 242, 242);
     
-    [footerView addSubview:self.noteLabel];
-    [self.noteLabel setHidden:YES];
-    CGSize msgSize = [NSString sizeWithText:noteMsg
-                                    andFont:MKFont(12.f)
-                                 andMaxSize:CGSizeMake(kViewWidth - 2 * 15.f, MAXFLOAT)];
-    [self.noteLabel setFrame:CGRectMake(15.f, 15.f, kViewWidth - 2 * 15.f, msgSize.height)];
+//    [footerView addSubview:self.noteLabel];
+//    [self.noteLabel setHidden:YES];
+//    CGSize msgSize = [NSString sizeWithText:noteMsg
+//                                    andFont:MKFont(12.f)
+//                                 andMaxSize:CGSizeMake(kViewWidth - 2 * 15.f, MAXFLOAT)];
+//    [self.noteLabel setFrame:CGRectMake(15.f, 15.f, kViewWidth - 2 * 15.f, msgSize.height)];
     
     return footerView;
 }

@@ -146,6 +146,10 @@
             [self operationFailedBlockWithMsg:@"Config Country Band Server Error" block:failedBlock];
             return;
         }
+        if (![self configDate]) {
+            [self operationFailedBlockWithMsg:@"Config Date Error" block:failedBlock];
+            return;
+        }
         moko_dispatch_main_safe(^{
             if (sucBlock) {
                 sucBlock();
@@ -425,6 +429,19 @@
 - (BOOL)configCountryBand {
     __block BOOL success = NO;
     [MKRMInterface rm_configCountryBand:self.country sucBlock:^{
+        success = YES;
+        dispatch_semaphore_signal(self.semaphore);
+    } failedBlock:^(NSError * _Nonnull error) {
+        dispatch_semaphore_signal(self.semaphore);
+    }];
+    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
+    return success;
+}
+
+- (BOOL)configDate {
+    __block BOOL success = NO;
+    long long recordTime = [[NSDate date] timeIntervalSince1970];
+    [MKRMInterface rm_configDeviceTime:recordTime sucBlock:^{
         success = YES;
         dispatch_semaphore_signal(self.semaphore);
     } failedBlock:^(NSError * _Nonnull error) {

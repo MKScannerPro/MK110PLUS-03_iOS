@@ -143,6 +143,9 @@
     }else if (msgID == 1016) {
         //配置按键控制开关功能开关状态
         operationID = mk_rm_server_taskConfigOutputControlByButtonOperation;
+    }else if (msgID == 1017) {
+        //Npc OTA
+        operationID = mk_rm_server_taskConfigNpcOTAHostOperation;
     }else if (msgID == 1020) {
         //配置wifi
         operationID = mk_rm_server_taskModifyWifiInfosOperation;

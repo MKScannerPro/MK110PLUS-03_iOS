@@ -40,6 +40,14 @@ NS_ASSUME_NONNULL_BEGIN
                  sucBlock:(void (^)(void))sucBlock
               failedBlock:(void (^)(NSError *error))failedBlock;
 
+/// Sync device time.
+/// @param timestamp UTC
+/// @param sucBlock Success callback
+/// @param failedBlock Failure callback
++ (void)rm_configDeviceTime:(unsigned long)timestamp
+                   sucBlock:(void (^)(void))sucBlock
+                failedBlock:(void (^)(NSError *error))failedBlock;
+
 #pragma mark *********************MQTT Params************************
 /// Configure the domain name of the MQTT server.
 /// @param host 1~64 character ascii code.

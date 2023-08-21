@@ -19,6 +19,7 @@ NSString *const MKRMMQTTSessionManagerStateChangedNotification = @"MKRMMQTTSessi
 NSString *const MKRMReceiveDeviceOnlineNotification = @"MKRMReceiveDeviceOnlineNotification";
 NSString *const MKRMReceiveDeviceNetStateNotification = @"MKRMReceiveDeviceNetStateNotification";
 NSString *const MKRMReceiveDeviceOTAResultNotification = @"MKRMReceiveDeviceOTAResultNotification";
+NSString *const MKRMReceiveDeviceNpcOTAResultNotification = @"MKRMReceiveDeviceNpcOTAResultNotification";
 NSString *const MKRMReceiveDeviceResetByButtonNotification = @"MKRMReceiveDeviceResetByButtonNotification";
 NSString *const MKRMReceiveDeviceUpdateEapCertsResultNotification = @"MKRMReceiveDeviceUpdateEapCertsResultNotification";
 NSString *const MKRMReceiveDeviceUpdateMqttCertsResultNotification = @"MKRMReceiveDeviceUpdateMqttCertsResultNotification";
@@ -104,6 +105,13 @@ static dispatch_once_t onceToken;
     if (msgID == 3014) {
         //设备通过按键恢复出厂设置
         [[NSNotificationCenter defaultCenter] postNotificationName:MKRMReceiveDeviceResetByButtonNotification
+                                                            object:nil
+                                                          userInfo:data];
+        return;
+    }
+    if (msgID == 3018) {
+        //NCP固件升级结果
+        [[NSNotificationCenter defaultCenter] postNotificationName:MKRMReceiveDeviceNpcOTAResultNotification
                                                             object:nil
                                                           userInfo:data];
         return;

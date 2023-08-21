@@ -20,6 +20,8 @@ extern NSString *const MKRMReceiveDeviceOnlineNotification;
 
 extern NSString *const MKRMReceiveDeviceOTAResultNotification;
 
+extern NSString *const MKRMReceiveDeviceNpcOTAResultNotification;
+
 extern NSString *const MKRMReceiveDeviceResetByButtonNotification;
 
 extern NSString *const MKRMReceiveDeviceUpdateEapCertsResultNotification;

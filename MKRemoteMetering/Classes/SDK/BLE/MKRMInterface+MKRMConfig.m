@@ -69,6 +69,17 @@ static const NSInteger packDataMaxLen = 150;
                    failedBlock:failedBlock];
 }
 
++ (void)rm_configDeviceTime:(unsigned long)timestamp
+                   sucBlock:(void (^)(void))sucBlock
+                failedBlock:(void (^)(NSError *error))failedBlock {
+    NSString *value = [NSString stringWithFormat:@"%1lx",timestamp];
+    NSString *commandString = [@"ed011404" stringByAppendingString:value];
+    [self configDataWithTaskID:mk_rm_taskConfigDeviceTimeOperation
+                          data:commandString
+                      sucBlock:sucBlock
+                   failedBlock:failedBlock];
+}
+
 #pragma mark *********************MQTT Params************************
 
 + (void)rm_configServerHost:(NSString *)host
@@ -139,13 +150,13 @@ static const NSInteger packDataMaxLen = 150;
     if (packRemain > 0) {
         totalNum ++;
     }
+    NSString *totalNumString = [MKBLEBaseSDKAdopter fetchHexValue:totalNum byteLen:1];
     NSString *commandHeader = @"ee0123";
     dispatch_queue_t queue = dispatch_queue_create("configUserNameQueue", 0);
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     dispatch_async(queue, ^{
         for (NSInteger i = 0; i < totalNum; i ++) {
-            NSString *first = ((i == 0) ? @"01" : @"00");
-            NSString *reamin = [MKBLEBaseSDKAdopter fetchHexValue:(totalNum - 1 - i) byteLen:1];
+            NSString *index = [MKBLEBaseSDKAdopter fetchHexValue:i byteLen:1];
             NSInteger len = packDataMaxLen;
             if ((i == totalNum - 1) && (packRemain > 0)) {
                 //最后一帧
@@ -153,7 +164,7 @@ static const NSInteger packDataMaxLen = 150;
             }
             NSString *lenString = [MKBLEBaseSDKAdopter fetchHexValue:len byteLen:1];
             NSString *asciiChar = [MKRMSDKDataAdopter fetchAsciiCode:[userName substringWithRange:NSMakeRange(i * packDataMaxLen, len)]];
-            NSString *commandString = [NSString stringWithFormat:@"%@%@%@%@%@",commandHeader,first,reamin,lenString,asciiChar];
+            NSString *commandString = [NSString stringWithFormat:@"%@%@%@%@%@",commandHeader,totalNumString,index,lenString,asciiChar];
             BOOL success = [self sendDataToPeripheral:commandString
                                                taskID:mk_rm_taskConfigServerUserNameOperation
                                             semaphore:semaphore];
@@ -191,13 +202,13 @@ static const NSInteger packDataMaxLen = 150;
     if (packRemain > 0) {
         totalNum ++;
     }
+    NSString *totalNumString = [MKBLEBaseSDKAdopter fetchHexValue:totalNum byteLen:1];
     NSString *commandHeader = @"ee0124";
     dispatch_queue_t queue = dispatch_queue_create("configUserPasswordQueue", 0);
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     dispatch_async(queue, ^{
         for (NSInteger i = 0; i < totalNum; i ++) {
-            NSString *first = ((i == 0) ? @"01" : @"00");
-            NSString *reamin = [MKBLEBaseSDKAdopter fetchHexValue:(totalNum - 1 - i) byteLen:1];
+            NSString *index = [MKBLEBaseSDKAdopter fetchHexValue:i byteLen:1];
             NSInteger len = packDataMaxLen;
             if ((i == totalNum - 1) && (packRemain > 0)) {
                 //最后一帧
@@ -205,7 +216,7 @@ static const NSInteger packDataMaxLen = 150;
             }
             NSString *lenString = [MKBLEBaseSDKAdopter fetchHexValue:len byteLen:1];
             NSString *asciiChar = [MKRMSDKDataAdopter fetchAsciiCode:[password substringWithRange:NSMakeRange(i * packDataMaxLen, len)]];
-            NSString *commandString = [NSString stringWithFormat:@"%@%@%@%@%@",commandHeader,first,reamin,lenString,asciiChar];
+            NSString *commandString = [NSString stringWithFormat:@"%@%@%@%@%@",commandHeader,totalNumString,index,lenString,asciiChar];
             BOOL success = [self sendDataToPeripheral:commandString
                                                taskID:mk_rm_taskConfigServerPasswordOperation
                                             semaphore:semaphore];

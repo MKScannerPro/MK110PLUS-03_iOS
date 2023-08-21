@@ -90,7 +90,10 @@
 }
 
 - (void)processOfflineWithMacAddress:(NSString *)macAddress {
-    if (![macAddress isEqualToString:[MKRMDeviceModeManager shared].macAddress] || ![MKBaseViewController isCurrentViewControllerVisible:self]) {
+    if (![macAddress isEqualToString:[MKRMDeviceModeManager shared].macAddress]) {
+        return;
+    }
+    if (![MKBaseViewController isCurrentViewControllerVisible:self]) {
         return;
     }
     //让setting页面推出的alert消失

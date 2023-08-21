@@ -168,7 +168,7 @@
         [[MKHudManager share] hide];
         [self loadSectionDatas];
         if (self.dataModel.isOn) {
-            [self addNotifications];
+            [self addNotes];
         }
     } failedBlock:^(NSError * _Nonnull error) {
         @strongify(self);
@@ -202,7 +202,7 @@
 }
 
 #pragma mark - private method
-- (void)addNotifications {
+- (void)addNotes {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receivePowerData:)
                                                  name:MKRMReceivePowerDataNotification
