@@ -238,7 +238,7 @@ MKRMDeviceModelDelegate>
         if ([deviceModel.macAddress isEqualToString:user[@"macAddress"]]) {
             deviceModel.onLineState = MKRMDeviceModelStateOnline;
             [deviceModel startStateMonitoringTimer];
-            deviceModel.wifiLevel = [user[@"data"][@"net_status"] integerValue];
+            deviceModel.wifiLevel = [user[@"data"][@"wifi_rssi"] integerValue];
             break;
         }
     }

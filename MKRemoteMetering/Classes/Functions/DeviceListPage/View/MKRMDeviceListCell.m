@@ -110,17 +110,17 @@
         return;
     }
     //设备在线
-    if (_dataModel.wifiLevel == 0) {
+    if (_dataModel.wifiLevel >= -50) {
         //Good
         self.wifiIcon.image = LOADICON(@"MKRemoteMetering", @"MKRMDeviceListCell", @"rm_good_wifi.png");
         return;
     }
-    if (_dataModel.wifiLevel == 1) {
+    if (_dataModel.wifiLevel >= -65 && _dataModel.wifiLevel < -50) {
         //Medium
         self.wifiIcon.image = LOADICON(@"MKRemoteMetering", @"MKRMDeviceListCell", @"rm_medium_wifi.png");
         return;
     }
-    if (_dataModel.wifiLevel == 2) {
+    if (_dataModel.wifiLevel < -65) {
         //Poor
         self.wifiIcon.image = LOADICON(@"MKRemoteMetering", @"MKRMDeviceListCell", @"rm_poor_wifi.png");
         return;
