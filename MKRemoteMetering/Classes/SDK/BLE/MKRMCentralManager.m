@@ -404,9 +404,12 @@ static dispatch_once_t onceToken;
         || !MKValidData(normalData) || normalData.length < 8) {
         return @{};
     }
-    NSString *content = [MKBLEBaseSDKAdopter hexStringFromData:[normalData subdataWithRange:NSMakeRange(2, 6)]];
-    
     NSString *deviceType = [MKBLEBaseSDKAdopter hexStringFromData:manufacturerData];
+    if (![deviceType isEqualToString:@"00"]) {
+        return @{};
+    }
+    
+    NSString *content = [MKBLEBaseSDKAdopter hexStringFromData:[normalData subdataWithRange:NSMakeRange(2, 6)]];
     
     NSString *tempMac = [content uppercaseString];
     NSString *macAddress = [NSString stringWithFormat:@"%@:%@:%@:%@:%@:%@",
