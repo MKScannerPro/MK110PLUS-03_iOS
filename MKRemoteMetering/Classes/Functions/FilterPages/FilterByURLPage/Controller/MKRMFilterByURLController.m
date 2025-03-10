@@ -24,14 +24,14 @@
 
 #import "MKRMDeviceModel.h"
 
-#import "MKRMFilterNormalTextFieldCell.h"
+#import "MKFilterNormalTextFieldCell.h"
 
 #import "MKRMFilterByURLModel.h"
 
 @interface MKRMFilterByURLController ()<UITableViewDelegate,
 UITableViewDataSource,
 mk_textSwitchCellDelegate,
-MKRMFilterNormalTextFieldCellDelegate>
+MKFilterNormalTextFieldCellDelegate>
 
 @property (nonatomic, strong)MKBaseTableView *tableView;
 
@@ -96,7 +96,7 @@ MKRMFilterNormalTextFieldCellDelegate>
         cell.delegate = self;
         return cell;
     }
-    MKRMFilterNormalTextFieldCell *cell = [MKRMFilterNormalTextFieldCell initCellWithTableView:tableView];
+    MKFilterNormalTextFieldCell *cell = [MKFilterNormalTextFieldCell initCellWithTableView:tableView];
     cell.dataModel = self.section1List[indexPath.row];
     cell.delegate = self;
     return cell;
@@ -116,12 +116,12 @@ MKRMFilterNormalTextFieldCellDelegate>
     }
 }
 
-#pragma mark - MKRMFilterNormalTextFieldCellDelegate
-- (void)mk_rm_filterNormalTextFieldValueChanged:(NSString *)text index:(NSInteger)index {
+#pragma mark - MKFilterNormalTextFieldCellDelegate
+- (void)mk_filterNormalTextFieldValueChanged:(NSString *)text index:(NSInteger)index {
     if (index == 0) {
         //URL
         self.dataModel.url = text;
-        MKRMFilterNormalTextFieldCellModel *cellModel = self.section1List[0];
+        MKFilterNormalTextFieldCellModel *cellModel = self.section1List[0];
         cellModel.textFieldValue = text;
         return;
     }
@@ -173,7 +173,7 @@ MKRMFilterNormalTextFieldCellDelegate>
 }
 
 - (void)loadSection1Datas {
-    MKRMFilterNormalTextFieldCellModel *cellModel1 = [[MKRMFilterNormalTextFieldCellModel alloc] init];
+    MKFilterNormalTextFieldCellModel *cellModel1 = [[MKFilterNormalTextFieldCellModel alloc] init];
     cellModel1.index = 0;
     cellModel1.msg = @"URL";
     cellModel1.textFieldType = mk_normal;

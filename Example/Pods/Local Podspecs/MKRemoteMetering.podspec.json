@@ -124,27 +124,6 @@
               "source_files": "MKRemoteMetering/Classes/Expand/View/AlertView/**"
             },
             {
-              "name": "FilterCell",
-              "subspecs": [
-                {
-                  "name": "FilterBeaconCell",
-                  "source_files": "MKRemoteMetering/Classes/Expand/View/FilterCell/FilterBeaconCell/**"
-                },
-                {
-                  "name": "FilterByRawDataCell",
-                  "source_files": "MKRemoteMetering/Classes/Expand/View/FilterCell/FilterByRawDataCell/**"
-                },
-                {
-                  "name": "FilterEditSectionHeaderView",
-                  "source_files": "MKRemoteMetering/Classes/Expand/View/FilterCell/FilterEditSectionHeaderView/**"
-                },
-                {
-                  "name": "FilterNormalTextFieldCell",
-                  "source_files": "MKRemoteMetering/Classes/Expand/View/FilterCell/FilterNormalTextFieldCell/**"
-                }
-              ]
-            },
-            {
               "name": "UserCredentialsView",
               "source_files": "MKRemoteMetering/Classes/Expand/View/UserCredentialsView/**"
             }
@@ -205,6 +184,15 @@
       ]
     },
     {
+      "name": "LoginManager",
+      "source_files": "MKRemoteMetering/Classes/LoginManager/**",
+      "dependencies": {
+        "MKIotCloudManager": [
+
+        ]
+      }
+    },
+    {
       "name": "Functions",
       "dependencies": {
         "MKRemoteMetering/SDK": [
@@ -217,6 +205,9 @@
 
         ],
         "MKRemoteMetering/DeviceModel": [
+
+        ],
+        "MKRemoteMetering/LoginManager": [
 
         ],
         "MKBaseModuleLibrary": [
@@ -548,6 +539,9 @@
 
                 ],
                 "MKRemoteMetering/Functions/DeviceDataPage": [
+
+                ],
+                "MKRemoteMetering/Functions/SyncDevicePage": [
 
                 ]
               }
@@ -1364,6 +1358,24 @@
                   "source_files": "MKRemoteMetering/Classes/Functions/SettingPages/SettingPage/Model/**"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "name": "SyncDevicePage",
+          "subspecs": [
+            {
+              "name": "Controller",
+              "source_files": "MKRemoteMetering/Classes/Functions/SyncDevicePage/Controller/**",
+              "dependencies": {
+                "MKRemoteMetering/Functions/SyncDevicePage/View": [
+
+                ]
+              }
+            },
+            {
+              "name": "View",
+              "source_files": "MKRemoteMetering/Classes/Functions/SyncDevicePage/View/**"
             }
           ]
         }

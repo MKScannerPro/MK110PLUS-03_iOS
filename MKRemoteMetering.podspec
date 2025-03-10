@@ -103,26 +103,6 @@ TODO: Add long description of the pod here.
         ssss.source_files = 'MKRemoteMetering/Classes/Expand/View/AlertView/**'
       end
       
-      sss.subspec 'FilterCell' do |ssss|
-        
-        ssss.subspec 'FilterBeaconCell' do |sssss|
-          sssss.source_files = 'MKRemoteMetering/Classes/Expand/View/FilterCell/FilterBeaconCell/**'
-        end
-        
-        ssss.subspec 'FilterByRawDataCell' do |sssss|
-          sssss.source_files = 'MKRemoteMetering/Classes/Expand/View/FilterCell/FilterByRawDataCell/**'
-        end
-        
-        ssss.subspec 'FilterEditSectionHeaderView' do |sssss|
-          sssss.source_files = 'MKRemoteMetering/Classes/Expand/View/FilterCell/FilterEditSectionHeaderView/**'
-        end
-        
-        ssss.subspec 'FilterNormalTextFieldCell' do |sssss|
-          sssss.source_files = 'MKRemoteMetering/Classes/Expand/View/FilterCell/FilterNormalTextFieldCell/**'
-        end
-      
-      end
-      
       sss.subspec 'UserCredentialsView' do |ssss|
         
         ssss.source_files = 'MKRemoteMetering/Classes/Expand/View/UserCredentialsView/**'
@@ -166,6 +146,12 @@ TODO: Add long description of the pod here.
         end
     end
     
+  end
+  
+  s.subspec 'LoginManager' do |ss|
+    ss.source_files = 'MKRemoteMetering/Classes/LoginManager/**'
+  
+    ss.dependency 'MKIotCloudManager'
   end
   
   s.subspec 'Functions' do |ss|
@@ -368,6 +354,8 @@ TODO: Add long description of the pod here.
           ssss.dependency 'MKRemoteMetering/Functions/ServerForApp'
           ssss.dependency 'MKRemoteMetering/Functions/ScanPage'
           ssss.dependency 'MKRemoteMetering/Functions/DeviceDataPage'
+          ssss.dependency 'MKRemoteMetering/Functions/SyncDevicePage'
+          
         end
         
         sss.subspec 'Model' do |ssss|
@@ -895,11 +883,24 @@ TODO: Add long description of the pod here.
         
     end
     
+    ss.subspec 'SyncDevicePage' do |sss|
+        sss.subspec 'Controller' do |ssss|
+          ssss.source_files = 'MKRemoteMetering/Classes/Functions/SyncDevicePage/Controller/**'
+          
+          ssss.dependency 'MKRemoteMetering/Functions/SyncDevicePage/View'
+        end
+        
+        sss.subspec 'View' do |ssss|
+          ssss.source_files = 'MKRemoteMetering/Classes/Functions/SyncDevicePage/View/**'
+        end
+    end
+    
     ss.dependency 'MKRemoteMetering/SDK'
     ss.dependency 'MKRemoteMetering/Expand'
     ss.dependency 'MKRemoteMetering/CTMediator'
     ss.dependency 'MKRemoteMetering/DeviceModel'
     ss.dependency 'MKRemoteMetering/CTMediator'
+    ss.dependency 'MKRemoteMetering/LoginManager'
   
     ss.dependency 'MKBaseModuleLibrary'
     ss.dependency 'MKCustomUIModule'
