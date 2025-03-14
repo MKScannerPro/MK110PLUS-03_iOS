@@ -146,6 +146,7 @@
 #import "MKRMSettingModel.h"
 #import "MKRMSyncDeviceController.h"
 #import "MKRMSyncDeviceCell.h"
+#import "MKRMNetworkService.h"
 #import "MKRMUserLoginManager.h"
 #import "CBPeripheral+MKRMAdd.h"
 #import "MKRMBLESDK.h"
